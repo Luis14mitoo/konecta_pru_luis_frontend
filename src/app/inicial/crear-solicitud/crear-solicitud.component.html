@@ -1,0 +1,213 @@
+
+<div class="alert alert-info alert-dismissible fade show" role="alert"
+*ngIf="displayDialogInfoGetAlert">
+<button type="button" class="close" aria-label="Close" (click)="closeAlerta()">
+  <span aria-hidden="true">&times;</span>
+</button>
+<strong>  {{mensajeUsuario }}  </strong> 
+</div>
+
+
+<!-- Modal Crear Solicitud -->
+
+<div class="container-sm" *ngIf="displayDialogInfoCrearSolicitud">
+  <form [formGroup]="formCrearSolicitud" (ngSubmit)="crearSolicitud()">
+    <h2>Crear Solicitud</h2>
+    <div class="mb-12 row">
+     
+      <div class="mb-10 row">
+        <label class="col-sm-5 col-form-label">CODIGO</label>
+        <div class="col-sm-5">
+          <input type="text" class="form-control" formControlName="codigo" id="codigo" />
+        </div>
+      </div>
+      <div class="mb-10 row">
+        <label class="col-sm-5 col-form-label">DESCRIPCION</label>
+        <div class="col-sm-5">
+          <input type="text" class="form-control" formControlName="descripcion" id="descripcion" />
+        </div>
+      </div>
+     
+       <div class="mb-10 row">
+        <label class="col-sm-5 col-form-label">RESUMEN</label>
+        <div class="col-sm-5">
+          <input type="text" class="form-control" formControlName="resumen"id="resumen"/>
+        </div>
+      </div>
+      <div class="mb-10 row">
+        <label class="col-sm-5 col-form-label">EMPLEADO</label>
+        <div class="col-sm-5">
+          <input type="number" class="form-control" formControlName="idempleado"id="idempleado"/>
+        </div>
+      </div>
+     
+      <div class="mb-10 row">
+        <div class="d-grid gap-2 ">
+          <br>
+          <button class="btn btn-primary" type="submit">Guardar</button>
+         
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+
+
+
+<!-- Modal editar Solicitud -->
+
+<div class="container-sm" *ngIf="displayDialogInfoEditarSolicitud">
+  <h2>Editar Solicitud</h2>
+  <hr> 
+  <div class="mb-12 row">
+        <form [formGroup]="formCrearSolicitud" (ngSubmit)="getSolicitudParaEditar()">
+          <div class="mb-10 row">
+            <h5>Buscar Solicitud Para Editar</h5>
+            <label class="col-sm-5 col-form-label">ID</label>
+            <div class="col-sm-5">
+              <input  type="text" class="form-control" type="number" formControlName="id" id="id" />
+            </div>
+            <div class="d-grid gap-2 d-md-block">
+              <br>                 
+              <button class="btn btn-info" type="submit">Buscar</button>        
+              <hr>                  
+            </div>
+          </div>
+        </form>
+      <form [formGroup]="formCrearSolicitud" (ngSubmit)="editarSolicitud()">         
+              <div class="mb-10 row">
+                <label class="col-sm-5 col-form-label">CODIGO</label>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" formControlName="codigo" id="codigo" />
+                </div>
+              </div>
+              <div class="mb-10 row">
+                <label class="col-sm-5 col-form-label">DESCRIPCION</label>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" formControlName="descripcion" id="descripcion" />
+                </div>
+              </div>             
+               <div class="mb-10 row">
+                <label class="col-sm-5 col-form-label">RESUMEN</label>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" formControlName="resumen"id="resumen"/>
+                </div>
+              </div>
+              <div class="mb-10 row">
+                <label class="col-sm-5 col-form-label">EMPLEADO</label>
+                <div class="col-sm-5">
+                  <input type="number" class="form-control" formControlName="idempleado"id="idempleado"/>
+                </div>
+              </div>
+              <div class="mb-10 row">
+                <div class="d-grid gap-2 d-md-block">
+                  <br>
+                  <button class="btn btn-primary" type="submit">Guardar</button>            
+                </div>
+              </div>
+        </form>
+  </div>   
+</div>
+
+
+
+<!-- Modal eliminar  Solicitud -->
+
+<div class="container-sm" *ngIf="displayDialogInfoEliminarSolicitud">
+  <form [formGroup]="formCrearSolicitud" (ngSubmit)="deleteSolicitud()">
+    <h2>Eliminar Solicitud</h2>
+    <div class="mb-12 row">
+      <div class="mb-10 row">
+        <label class="col-sm-5 col-form-label">ID</label>
+        <div class="col-sm-5">
+          <input  type="text" class="form-control" type="number" formControlName="id" id="id" />
+        </div>
+      </div>
+      <br>      
+      <div class="mb-10 row">
+        <div class="d-grid gap-2 d-md-block">
+          <br>
+          <button class="btn btn-primary" type="submit">Eliminar</button>
+         
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+
+
+<!-- Modal buscarSolicitud -->
+
+<div class="container-sm" *ngIf="displayDialogInfoBuscarSolicitud">
+  <form [formGroup]="formCrearSolicitud" (ngSubmit)="getSolicitud()">
+    <h2>Buscar Solicitud</h2>
+    <div class="mb-12 row">
+      <div class="mb-10 row">
+        <label class="col-sm-5 col-form-label">ID</label>
+        <div class="col-sm-5">
+          <input  type="text" class="form-control" type="number" formControlName="id" id="id" />
+        </div>
+      </div>
+      <div class="mb-10 row">
+        <div class="d-grid gap-2 d-md-block">
+          <br>
+          <button class="btn btn-primary" type="submit">Buscar</button>
+          
+        </div>
+      </div>
+    </div>
+  </form>
+  <hr>
+  <table class="table"  *ngIf="displayDialogInfoTablaSolicitud" >
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">CODIGO</th>
+        <th scope="col">DESCRIPCION</th>
+        <th scope="col">RESUEMEN</th>
+        <th scope="col">NOMBRE</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr >
+        <th scope="row">{{solicitud.id}}</th>
+        <td>{{solicitud.codigo}}</td>
+        <td>{{solicitud.descripcion}}</td>
+        <td>{{solicitud.resumen}}</td>
+        <td>{{empleado.nombre}}</td>
+      </tr>      
+    </tbody>
+  </table>
+</div>
+
+
+
+
+<!-- Modal listar todos Solicitud -->
+
+<div class="container-sm" *ngIf="displayDialogInfoGetAllSolicitud">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">CODIGO</th>
+        <th scope="col">DESCRIPCION</th>
+        <th scope="col">RESUEMEN</th>
+        <th scope="col">ID_EMPLEADO</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr *ngFor="let solicitud of  listSolicitudes" >
+        <th scope="row">{{solicitud.id}}</th>
+        <td>{{solicitud.codigo}}</td>
+        <td>{{solicitud.descripcion}}</td>
+        <td>{{solicitud.resumen}}</td>
+        <td>{{solicitud.idempleado}}</td>
+      </tr>      
+    </tbody>
+  </table>
+</div>
+

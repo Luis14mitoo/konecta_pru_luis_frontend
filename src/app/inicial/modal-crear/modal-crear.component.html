@@ -1,0 +1,186 @@
+
+<div class="alert alert-info alert-dismissible fade show" role="alert"
+*ngIf="displayDialogInfoGetAlert">
+<button type="button" class="close" aria-label="Close" (click)="closeAlerta()">
+  <span aria-hidden="true">&times;</span>
+</button>
+<strong>  {{mensajeUsuario }}  </strong> 
+</div>
+
+<!-- Modal CrearEmpleado -->
+<div class="container-sm" *ngIf="displayDialogInfoCrearEmpleado">
+  <form [formGroup]="formCrearEmpleado" (ngSubmit)="crearEmpleado()">
+    <h2>Crear Empleado</h2>
+    <div class="mb-12 row">
+     
+      <div class="mb-10 row">
+        <label class="col-sm-5 col-form-label">FECHA_INGRESO: AAAA-MM-DD</label>
+        <div class="col-sm-5">
+          <input type="text" class="form-control" formControlName="fechaIngreso" id="fechaIngreso" />
+        </div>
+      </div>
+      <div class="mb-10 row">
+        <label class="col-sm-5 col-form-label">NOMBRE</label>
+        <div class="col-sm-5">
+          <input type="text" class="form-control" formControlName="nombre" id="nombre" />
+        </div>
+      </div>
+     
+       <div class="mb-10 row">
+        <label class="col-sm-5 col-form-label">SALARIO</label>
+        <div class="col-sm-5">
+          <input type="number" class="form-control" formControlName="salario"id="salario"/>
+        </div>
+      </div>
+     
+      <div class="mb-10 row">
+        <div class="d-grid gap-2 ">
+          <br>
+          <button class="btn btn-primary" type="submit">Guardar</button>
+         
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<!-- Modal editarEmpleado -->
+
+<div class="container-sm" *ngIf="displayDialogInfoEditarEmpleado">
+  <h2>EditarEmpleado Empleado</h2>
+  <hr> 
+  <div class="mb-12 row">
+      <form [formGroup]="formCrearEmpleado" (ngSubmit)="getEmpleadoParaEditar()">
+          <div class="mb-10 row">
+            <h5>Buscar Empleado Para Editar</h5>
+            <label class="col-sm-5 col-form-label">ID</label>
+            <div class="col-sm-5">
+              <input  type="text" class="form-control" type="number" formControlName="id" id="id" />
+            </div>
+            <div class="d-grid gap-2 d-md-block">
+              <br>                 
+              <button class="btn btn-info" type="submit">Buscar</button>        
+              <hr>                  
+            </div>
+          </div>
+        </form>
+        <form [formGroup]="formCrearEmpleado" (ngSubmit)="editarEmpleado()">
+          <div class="mb-10 row">
+            <label class="col-sm-5 col-form-label">FECHA_INGRESO: </label>
+            <div class="col-sm-5">
+              <input type="text" class="form-control" formControlName="fechaIngreso" id="fechaIngreso" />
+            </div>
+          </div>
+          <div class="mb-10 row">
+            <label class="col-sm-5 col-form-label">NOMBRE</label>
+            <div class="col-sm-5">
+              <input type="text" class="form-control" formControlName="nombre" id="nombre" />
+            </div>
+          </div>
+          <div class="mb-10 row">
+            <label class="col-sm-5 col-form-label">SALARIO</label>
+            <div class="col-sm-5">
+              <input type="number" class="form-control" formControlName="salario"id="salario"/>
+            </div>
+          </div>
+          <div class="mb-10 row">
+            <div class="d-grid gap-2 d-md-block">
+            <br>
+              <button class="btn btn-primary" type="submit">Guardar</button>
+            
+            </div>
+          </div>
+        </form>
+  </div>   
+</div>
+
+<!-- Modal eliminarEmpleado -->
+
+<div class="container-sm" *ngIf="displayDialogInfoEliminarEmpleado">
+  <form [formGroup]="formCrearEmpleado" (ngSubmit)="deleteEmpleado()">
+    <h2>Eliminar Empleado</h2>
+    <div class="mb-12 row">
+      <div class="mb-10 row">
+        <label class="col-sm-5 col-form-label">ID</label>
+        <div class="col-sm-5">
+          <input  type="text" class="form-control" type="number" formControlName="id" id="id" />
+        </div>
+      </div>
+      <br>      
+      <div class="mb-10 row">
+        <div class="d-grid gap-2 d-md-block">
+          <br>
+          <button class="btn btn-primary" type="submit">Eliminar</button>
+         
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<!-- Modal buscarEmpleado -->
+
+<div class="container-sm" *ngIf="displayDialogInfoBuscarEmpleado">
+  <form [formGroup]="formCrearEmpleado" (ngSubmit)="getEmpleado()">
+    <h2>Buscar Empleado</h2>
+    <div class="mb-12 row">
+      <div class="mb-10 row">
+        <label class="col-sm-5 col-form-label">ID</label>
+        <div class="col-sm-5">
+          <input  type="text" class="form-control" type="number" formControlName="id" id="id" />
+        </div>
+      </div>
+      <div class="mb-10 row">
+        <div class="d-grid gap-2 d-md-block">
+          <br>
+          <button class="btn btn-primary" type="submit">Buscar</button>
+          
+        </div>
+      </div>
+    </div>
+  </form>
+  <hr>
+  <table class="table"  *ngIf="displayDialogInfoTablaEmpleado" >
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">FECHA_INGRESO</th>
+        <th scope="col">NOMBRE</th>
+        <th scope="col">SALARIO</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr >
+        <th scope="row">{{empleado.id}}</th>
+        <td>{{empleado.fechaingreso}}</td>
+        <td>{{empleado.nombre}}</td>
+        <td>{{empleado.salario}}</td>
+      </tr>      
+    </tbody>
+  </table>
+</div>
+
+<!-- Modal listar todos Empleado -->
+
+<div class="container-sm" *ngIf="displayDialogInfoGetAllEmpleado">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">FECHA_INGRESO</th>
+        <th scope="col">NOMBRE</th>
+        <th scope="col">SALARIO</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr *ngFor="let empleadoA of  empleados" >
+        <th scope="row">{{empleadoA.id}}</th>
+        <td>{{empleadoA.fechaingreso}}</td>
+        <td>{{empleadoA.nombre}}</td>
+        <td>{{empleadoA.salario}}</td>
+      </tr>      
+    </tbody>
+  </table>
+</div>
+
